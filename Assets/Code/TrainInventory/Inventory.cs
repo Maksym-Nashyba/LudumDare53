@@ -1,28 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using Code.TrainInventory.Items;
 using UnityEngine;
 
 namespace Code.TrainInventory
 {
     public class Inventory : MonoBehaviour
     {
-        private const int InventoryHorizontalSize = 8;
-        private const int InventoryVerticalSize = 4;
-        
-        private bool[,] _isSlotsFill;
+        public const int InventoryRows = 5;
+        public const int InventoryColumns = 9;
+        public event Action InventoryChanged;
+        public bool[,] IsSlotsFill { get; private set; }
         private List<InventoryItem> _items;
-
+        
         private void Awake()
         {
-            _isSlotsFill = new bool[InventoryHorizontalSize, InventoryVerticalSize];
+            IsSlotsFill = new bool[InventoryRows, InventoryColumns];
+            _items = new List<InventoryItem>();
         }
 
         public void AddItem(InventoryItem item, Vector2Int topLeftItemSlot)
         {
-            if (!CheckSlots(topLeftItemSlot, item.Size)) throw new InvalidOperationException();
+            if (!IsWithinInventoryBounds(topLeftItemSlot, item.Size)) throw new IndexOutOfRangeException();
+            if (!AreSlotsAvailable(topLeftItemSlot, item.Size)) throw new InvalidOperationException();
             item.UpdatePosition(topLeftItemSlot);
             UpdateSlots(topLeftItemSlot, item.Size, true);
             _items.Add(item);
+            InventoryChanged?.Invoke();
+        }
+        
+        public InventoryItem GetItemInSlot(Vector2Int slot)
+        {
+            InventoryItem itemInSlot = null;
+
+            foreach (InventoryItem item in _items)
+            {
+                for (int y = 0; y < item.Size.y; y++)
+                {
+                    for (int x = 0; x < item.Size.x; x++)
+                    {
+                        if(!(item.TopLeftSlotPosition.y + y == slot.y &&
+                             item.TopLeftSlotPosition.x + x == slot.x)) continue;
+                        itemInSlot = item;
+                        break;
+                    }
+                }
+            }
+            
+            return itemInSlot;
         }
 
         public void RemoveItem(InventoryItem item)
@@ -30,16 +55,34 @@ namespace Code.TrainInventory
             _items.Remove(item);
             UpdateSlots(item.TopLeftSlotPosition, item.Size, false);
             Destroy(item);
+            InventoryChanged?.Invoke();
         }
 
-        private bool CheckSlots(Vector2Int topLeftItemSlot, Vector2Int itemSize)
+        private bool IsWithinInventoryBounds(Vector2Int topLeftItemSlot, Vector2Int itemSize)
+        {
+            bool isWithinBounds = true;
+            for (int y = 0; y < itemSize.y; y++)
+            {
+                for (int x = 0; x < itemSize.x; x++)
+                {
+                    if (topLeftItemSlot.y + y < InventoryRows && topLeftItemSlot.x + x < InventoryColumns &&
+                        topLeftItemSlot.y + y >= 0 && topLeftItemSlot.x + x >= 0) continue;
+                    isWithinBounds = false;
+                    break;
+                }
+            }
+
+            return isWithinBounds;
+        }
+
+        private bool AreSlotsAvailable(Vector2Int topLeftItemSlot, Vector2Int itemSize)
         {
             bool canPlace = true;
-            for (int x = 0; x < itemSize.x; x++)
+            for (int y = 0; y < itemSize.y; y++)
             {
-                for (int y = 0; y < itemSize.y; y++)
+                for (int x = 0; x < itemSize.x; x++)
                 {
-                    if (!_isSlotsFill[topLeftItemSlot.x + x, topLeftItemSlot.y + y]) continue;
+                    if (!IsSlotsFill[topLeftItemSlot.y + y, topLeftItemSlot.x + x]) continue;
                     canPlace = false;
                     break;
                 }
@@ -50,11 +93,11 @@ namespace Code.TrainInventory
 
         private void UpdateSlots(Vector2Int topLeftItemSlot, Vector2Int itemSize, bool slotValue)
         {
-            for (int x = 0; x < itemSize.x; x++)
+            for (int y = 0; y < itemSize.y; y++)
             {
-                for (int y = 0; y < itemSize.y; y++)
+                for (int x = 0; x < itemSize.x; x++)
                 {
-                    _isSlotsFill[topLeftItemSlot.x + x, topLeftItemSlot.y + y] = slotValue;
+                    IsSlotsFill[topLeftItemSlot.y + y, topLeftItemSlot.x + x] = slotValue;
                 }
             }
         }

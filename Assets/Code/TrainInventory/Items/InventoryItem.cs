@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.TrainInventory
+namespace Code.TrainInventory.Items
 {
     public abstract class InventoryItem : MonoBehaviour
     {
