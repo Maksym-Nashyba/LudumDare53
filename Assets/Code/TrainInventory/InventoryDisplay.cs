@@ -1,5 +1,4 @@
-﻿using Code.TrainInventory.Items;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Code.TrainInventory
@@ -20,18 +19,6 @@ namespace Code.TrainInventory
         private void OnDestroy()
         {
             _inventory.InventoryChanged -= UpdateInventorySlots;
-        }
-
-        public void AddItem(InventoryEntry item, Vector2Int topLeftItemSlot)
-        {
-            _inventory.AddItem(item, topLeftItemSlot);
-            UpdateInventorySlots();
-        }
-
-        public void RemoveItem(InventoryEntry item)
-        {
-            _inventory.RemoveItem(item);
-            UpdateInventorySlots();
         }
 
         private void GenerateInventorySlots()
