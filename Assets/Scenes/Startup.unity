@@ -211,6 +211,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Vagons:
   - {fileID: 433574832}
+  Credits: 1000
+  CurrentStation: {fileID: 11400000, guid: 1a3289f40bdbf534fb9ceb876657219c, type: 2}
+  _turret: {fileID: 0}
 --- !u!4 &433574834
 Transform:
   m_ObjectHideFlags: 0

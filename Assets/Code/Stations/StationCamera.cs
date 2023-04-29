@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-namespace Code.Station
+namespace Code.Stations
 {
     public class StationCamera : MonoBehaviour
     {

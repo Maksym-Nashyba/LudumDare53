@@ -6,7 +6,7 @@ namespace Code.TrainInventory
     public class InventoryDisplay : MonoBehaviour
     {
         [SerializeField] private Inventory _inventory;
-        [SerializeField] private GameObject _inventorySlotPrefab;
+        [SerializeField] private GameLoop _inventorySlotPrefab;
         [SerializeField] private GridLayoutGroup _gridLayoutGroup;
         private InventorySlot[,] _inventorySlots;
 

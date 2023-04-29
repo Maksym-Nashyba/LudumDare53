@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Station.unity
     guid: 8e302bd3ef7b3914f9843bb07640c7e5
+  - enabled: 1
+    path: Assets/Scenes/StarMap.unity
+    guid: ccd8477d2a53357418cbe172361d7316
   m_configObjects: {}

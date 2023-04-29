@@ -11,29 +11,30 @@ namespace Code.TrainInventory
         public const int InventoryColumns = 9;
         public event Action InventoryChanged;
         public bool[,] IsSlotsFill { get; private set; }
-        private List<InventoryItem> _items;
+        private List<InventoryEntry> _items;
         
         private void Awake()
         {
             IsSlotsFill = new bool[InventoryRows, InventoryColumns];
-            _items = new List<InventoryItem>();
+            _items = new List<InventoryEntry>();
         }
 
-        public void AddItem(InventoryItem item, Vector2Int topLeftItemSlot)
+        public void AddItem(InventoryEntry item, Vector2Int positionOnVagon)//TOP LEFT POSITION
         {
-            if (!IsWithinInventoryBounds(topLeftItemSlot, item.Size)) throw new IndexOutOfRangeException();
-            if (!AreSlotsAvailable(topLeftItemSlot, item.Size)) throw new InvalidOperationException();
-            item.UpdatePosition(topLeftItemSlot);
-            UpdateSlots(topLeftItemSlot, item.Size, true);
+            item = Instantiate(item);
+            if (!IsWithinInventoryBounds(positionOnVagon, item.Size)) throw new IndexOutOfRangeException();
+            if (!AreSlotsAvailable(positionOnVagon, item.Size)) throw new InvalidOperationException();
+            item.UpdatePosition(positionOnVagon);
+            UpdateSlots(positionOnVagon, item.Size, true);
             _items.Add(item);
             InventoryChanged?.Invoke();
         }
         
-        public InventoryItem GetItemInSlot(Vector2Int slot)
+        public InventoryEntry GetItemInSlot(Vector2Int slot)
         {
-            InventoryItem itemInSlot = null;
+            InventoryEntry itemInSlot = null;
 
-            foreach (InventoryItem item in _items)
+            foreach (InventoryEntry item in _items)
             {
                 for (int y = 0; y < item.Size.y; y++)
                 {

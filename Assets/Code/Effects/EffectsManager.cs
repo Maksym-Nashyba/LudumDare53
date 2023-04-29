@@ -5,7 +5,7 @@ namespace Code
 {
     public class EffectsManager : MonoBehaviour
     {
-        [SerializeField] private GameObject _shotPrefab;
+        [SerializeField] private UnityEngine.GameObject _shotPrefab;
 
         public void PlayShotEffect(Vector3 origin, Vector3 target)
         {
