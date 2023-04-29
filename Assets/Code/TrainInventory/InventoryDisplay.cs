@@ -7,7 +7,7 @@ namespace Code.TrainInventory
     public class InventoryDisplay : MonoBehaviour
     {
         [SerializeField] private Inventory _inventory;
-        [SerializeField] private GameObject _inventorySlotPrefab;
+        [SerializeField] private GameLoop _inventorySlotPrefab;
         [SerializeField] private GridLayoutGroup _gridLayoutGroup;
         private InventorySlot[,] _inventorySlots;
 
@@ -22,13 +22,13 @@ namespace Code.TrainInventory
             _inventory.InventoryChanged -= UpdateInventorySlots;
         }
 
-        public void AddItem(InventoryItem item, Vector2Int topLeftItemSlot)
+        public void AddItem(InventoryEntry item, Vector2Int topLeftItemSlot)
         {
             _inventory.AddItem(item, topLeftItemSlot);
             UpdateInventorySlots();
         }
 
-        public void RemoveItem(InventoryItem item)
+        public void RemoveItem(InventoryEntry item)
         {
             _inventory.RemoveItem(item);
             UpdateInventorySlots();
