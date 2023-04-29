@@ -29,18 +29,18 @@ namespace Code.PlayerMechanics.Tools
             }
             else
             {
-                _effects.PlayShowEffectNoTarget(_muzzle.position, direction);
+                _effects.PlayShotEffectNoTarget(_muzzle.position, direction);
             }
         }
 
         private IEnumerator PlayCooldown()
         {
             _inCooldown = true;
-            float passsed = 0f; 
-            while (passsed < _cooldownDuration)
+            float passed = 0f; 
+            while (passed < _cooldownDuration)
             {
                 yield return null;
-                passsed += Time.deltaTime;
+                passed += Time.deltaTime;
             }
 
             _inCooldown = false;

@@ -18,6 +18,9 @@ namespace Code.PlayerMechanics
 
         private void Update()
         {
+            if(Input.GetKeyDown(KeyCode.Alpha0)) EquipTool(_tools[1]);
+            if(Input.GetKeyDown(KeyCode.Alpha1)) EquipTool(_tools[2]);
+            
             if (Input.GetMouseButtonDown(0))
             {
                 _currentTool.Use(_input.GetLookDirection());
@@ -26,9 +29,11 @@ namespace Code.PlayerMechanics
 
         private void EquipTool(HandheldTool nextTool)
         {
+            if(nextTool == _currentTool)return;
             _currentTool.gameObject.SetActive(false);
             _currentTool = nextTool;
             _currentTool.gameObject.SetActive(true);
+            ActiveToolChanged?.Invoke(_currentTool);
         }
     }
 }

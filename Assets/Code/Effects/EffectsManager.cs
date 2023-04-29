@@ -13,7 +13,7 @@ namespace Code
             shotInstance.Play(origin, target, 2f);
         }
         
-        public void PlayShowEffectNoTarget(Vector3 origin, Vector3 direction)
+        public void PlayShotEffectNoTarget(Vector3 origin, Vector3 direction)
         {
             PlayShotEffect(origin, origin + (direction.normalized * 25f));
         }
