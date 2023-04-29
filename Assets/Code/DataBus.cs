@@ -8,6 +8,7 @@ namespace Code
     public class DataBus : MonoBehaviour
     {
         public List<Inventory> Vagons;
+        public int Credits;
 
         private void Awake()
         {

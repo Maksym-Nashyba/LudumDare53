@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141f2c2e10e04195abf47083c22a3b73, type: 3}
+  m_Name: AXT
+  m_EditorClassIdentifier: 
+  Links:
+  - {fileID: 11400000, guid: 1bfb7cc7e4cccdb47b42a51c54927296, type: 2}
+  - {fileID: 11400000, guid: c31ab647c250ce24fb274485e1078b99, type: 2}
+  CheapResources:
+  - {fileID: 11400000, guid: 9d9f0bc371db9cb42932a289b3d98438, type: 2}
+  ExpensiveResources:
+  - {fileID: 11400000, guid: 48b8672aa7ff5ac42bd12c15e3ffe194, type: 2}
