@@ -5,9 +5,9 @@ namespace Code.Train
 {
     public class Train : MonoBehaviour
     {
-        [SerializeField] private GameObject _headVagonPrefab;
-        [SerializeField] private GameObject _vagonPrefab;
-        [SerializeField] private GameObject _bridgePrefab;
+        [SerializeField] private UnityEngine.GameObject _headVagonPrefab;
+        [SerializeField] private UnityEngine.GameObject _vagonPrefab;
+        [SerializeField] private UnityEngine.GameObject _bridgePrefab;
         private DataBus _dataBus;
 
         private void Awake()
@@ -32,7 +32,7 @@ namespace Code.Train
             }
         }
 
-        private void SpawnVagon(GameObject prefab, float offset)
+        private void SpawnVagon(UnityEngine.GameObject prefab, float offset)
         {
             Instantiate(prefab, new Vector3(-offset, 0f, 0f), Quaternion.identity);
         }
