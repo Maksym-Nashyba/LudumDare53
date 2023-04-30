@@ -10,8 +10,11 @@ namespace Code.TrainInventory
         public const int InventoryRows = 5;
         public const int InventoryColumns = 9;
         public event Action InventoryChanged;
+        public event Action<Inventory> Changed;
         public bool[,] IsSlotsFill { get; private set; }
-        public List<InventoryEntry> Items { get; private set; }
+
+        public IReadOnlyCollection<InventoryEntry> Entries => _items.AsReadOnly();
+        private List<InventoryEntry> _items;
 
         private void Awake()
         {
@@ -28,6 +31,7 @@ namespace Code.TrainInventory
             UpdateSlots(positionOnVagon, item.Size, true);
             Items.Add(item);
             InventoryChanged?.Invoke();
+            Changed?.Invoke(this);
         }
 
         public InventoryEntry GetEntryInSlot(Vector2Int slot)
@@ -59,6 +63,7 @@ namespace Code.TrainInventory
             UpdateSlots(item.TopLeftSlotPosition, item.Size, false);
             UpdateSlots(topLeftItemSlot, item.Size, true);
             InventoryChanged?.Invoke();
+            Changed?.Invoke(this);
         }
 
         public void RemoveEntry(InventoryEntry item)
@@ -66,6 +71,7 @@ namespace Code.TrainInventory
             Items.Remove(item);
             UpdateSlots(item.TopLeftSlotPosition, item.Size, false);
             InventoryChanged?.Invoke();
+            Changed?.Invoke(this);
         }
 
         private bool IsWithinInventoryBounds(Vector2Int topLeftItemSlot, Vector2Int itemSize)

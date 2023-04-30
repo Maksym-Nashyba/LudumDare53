@@ -22,7 +22,7 @@ namespace Code
             
             Vagons.First().AddEntry(_turret, new Vector2Int(1,1));
             
-            Vagons.First().AddEntry(_turret, new Vector2Int(5,1));
+            Vagons.First().AddEntry(_turret, new Vector2Int(5,2));
         }
     }
 }
