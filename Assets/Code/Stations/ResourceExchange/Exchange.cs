@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using Code.TrainInventory;
 using Code.TrainInventory.Items;
 using UnityEngine;
@@ -15,10 +16,25 @@ namespace Code.Stations.ResourceExchange
         [SerializeField] private InventoryDragAndDrop _dragAndDrop;
         private DataBus _dataBus;
 
+        private void Awake()
+        {
+            _dataBus = FindObjectOfType<DataBus>();
+        }
+
         public void BuyEntry(InventoryEntry entry)
         {
-            //_dragAndDrop. //TODO if can't place, cancel buying
-            _dataBus.Credits -= (int)(entry.StandartCost * GetPriceMultiplier(entry));
+            int entryPrice = (int) (entry.StandartCost * GetPriceMultiplier(entry));
+            if (entryPrice > _dataBus.Credits) return;
+            StartCoroutine(StartDrag(entry, entryPrice));
+        }
+
+        private IEnumerator StartDrag(InventoryEntry entry, int entryPrice)
+        {
+            yield return new WaitForSecondsRealtime(0.15f);
+            _dragAndDrop.StartDrag(entry, () =>
+            {
+                _dataBus.Credits -= entryPrice;
+            });
         }
         
         public void SellEntry(InventoryEntry entry)
@@ -30,8 +46,8 @@ namespace Code.Stations.ResourceExchange
         public float GetPriceMultiplier(InventoryEntry entry)
         {
             float priceMultiplier = 1f;
-            if (CheapResources.First(resource => resource.name == entry.Name)) priceMultiplier = 0.6f;
-            else if (ExpensiveResources.First(resource => resource.name == entry.Name)) priceMultiplier = 1.4f;
+            if (CheapResources.Any(resource => resource.name == entry.Name)) priceMultiplier = 0.6f;
+            else if (ExpensiveResources.Any(resource => resource.name == entry.Name)) priceMultiplier = 1.4f;
             _dataBus.Credits += (int)(entry.StandartCost * priceMultiplier);
             return priceMultiplier;
         }

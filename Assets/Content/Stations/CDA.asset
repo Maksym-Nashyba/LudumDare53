@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Links:
   - {fileID: 11400000, guid: a9ec1a468b1aad54d8e7150c5a4879b5, type: 2}
-  CheapResources: []
-  ExpensiveResources: []
+  CheapResources:
+  - {fileID: 11400000, guid: 48b8672aa7ff5ac42bd12c15e3ffe194, type: 2}
+  - {fileID: 11400000, guid: 855a57458323b904298cce1d8fc80404, type: 2}
+  ExpensiveResources:
+  - {fileID: 11400000, guid: 9d9f0bc371db9cb42932a289b3d98438, type: 2}
+  - {fileID: 11400000, guid: 3f51679b277d3e14b8fc61ffe0a4bcfd, type: 2}
