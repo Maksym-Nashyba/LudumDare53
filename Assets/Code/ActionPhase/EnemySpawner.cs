@@ -26,9 +26,9 @@ namespace Code.ActionPhase
             if (gameObject == null || _train.Turrets.Count == 0) yield break;
 
             Vector3 center = _train.Turrets[Random.Range(0, _train.Turrets.Count)].transform.position;
-            float offset = Random.Range(0f,2f) >1f ? 10f : -10f;
+            float offset = Random.Range(0f,2f)>1f ? 10f : -10f;
             center += new Vector3(0f, 0f, offset);
-            GameObject istance = Instantiate(_enemyPrefabs[0], center, Quaternion.identity);
+            Instantiate(_enemyPrefabs[0], center, Quaternion.identity);
             StartCoroutine(SpawnEnemy(Random.Range(3f, 7f)));
         } 
     }

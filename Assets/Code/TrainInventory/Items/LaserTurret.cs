@@ -39,7 +39,7 @@ namespace Code.TrainInventory.Items
         protected override void Fire()
         {
             Enemy.DealDamage(_damage);
-            _effectsManager.PlayShotEffect(_muzzle.position, Enemy.transform.position);
+            _effectsManager.PlayLargeShotEffect(_muzzle.position, Enemy.transform.position);
         }
 
         private void Die()

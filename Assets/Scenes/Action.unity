@@ -169,6 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shotPrefab: {fileID: 4047800834202058624, guid: 9bd45f4d797cbe045a459b5e0c4cf9a5,
     type: 3}
+  _largeShotPrefab: {fileID: 4047800834202058624, guid: 60a44c56827427e44bd912226a94c3d4,
+    type: 3}
 --- !u!1001 &98797384
 PrefabInstance:
   m_ObjectHideFlags: 0

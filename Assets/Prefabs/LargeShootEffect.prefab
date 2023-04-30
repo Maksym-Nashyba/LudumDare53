@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8235993967545569546}
   - component: {fileID: 2910229963907435091}
   m_Layer: 0
-  m_Name: ShootEffect
+  m_Name: LargeShootEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,48 +52,21 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.28301886
-      outSlope: 0.28301886
+      inSlope: 4.333797
+      outSlope: 4.333797
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 1
+      outWeight: 0.06607005
     - serializedVersion: 3
-      time: 0.001379964
-      value: 0.04997442
-      inSlope: 2.2207217
-      outSlope: 2.2207217
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.3064811
-    - serializedVersion: 3
-      time: 0.026012098
-      value: 0.028198756
-      inSlope: -0.355325
-      outSlope: -0.355325
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.22682324
-    - serializedVersion: 3
-      time: 0.09703188
-      value: 0.0016595568
+      time: 0.39689174
+      value: 0
       inSlope: -0.08744258
       outSlope: -0.08744258
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.7820969
-    - serializedVersion: 3
-      time: 0.12891984
-      value: 0
-      inSlope: -0.073153526
-      outSlope: -0.073153526
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 1
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
