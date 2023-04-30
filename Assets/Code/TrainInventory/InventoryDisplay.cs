@@ -6,7 +6,7 @@ namespace Code.TrainInventory
     public class InventoryDisplay : MonoBehaviour
     {
         public InventorySlot[,] InventorySlots => _inventorySlots;
-        [SerializeField] private Inventory _inventory;
+        private Inventory _inventory;
         [SerializeField] private GameObject _inventorySlotPrefab;
         [SerializeField] private GridLayoutGroup _gridLayoutGroup;
         private InventorySlot[,] _inventorySlots;
@@ -42,12 +42,12 @@ namespace Code.TrainInventory
         
         public void UpdateInventorySlots(Vector2Int position, Vector2Int itemSize)
         {
-            for (int y = 0; y < position.y + itemSize.y; y++)
+            for (int y = position.y; y < position.y + itemSize.y; y++)
             {
-                for (int x = 0; x < position.x + itemSize.x; x++)
+                for (int x = position.x; x < position.x + itemSize.x; x++)
                 {
-                    if (!_inventory.IsSlotsFill[y,x]) _inventorySlots[y,x].TempFillSlot();
-                    else _inventorySlots[y,x].FillSlot();
+                    if (!_inventory.IsSlotsFill[y,x]) _inventorySlots[y,x].PaitTemp();
+                    else _inventorySlots[y,x].PaintFilled();
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace Code.TrainInventory
             {
                 for (int x = 0; x < Inventory.InventoryColumns; x++)
                 {
-                    if (_inventory.IsSlotsFill[y,x]) _inventorySlots[y,x].FillSlot();
+                    if (_inventory.IsSlotsFill[y,x]) _inventorySlots[y,x].PaintFilled();
                     else _inventorySlots[y,x].ClearSlot();
                 }
             }

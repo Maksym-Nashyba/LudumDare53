@@ -18,7 +18,7 @@ namespace Code.Stations
             _cameras = new List<CinemachineVirtualCamera>();
             _cameras.Add(_firstCamera);
             float offset = -11f;
-            for (int i = 0; i < _dataBus.Vagons.Count; i++)
+            for (int i = 0; i < _dataBus.Vagons.Count-1; i++)
             {
                 CinemachineVirtualCamera nextCamera = Instantiate(_firstCamera);
                 nextCamera.transform.position += new Vector3(offset, 0f, 0f);

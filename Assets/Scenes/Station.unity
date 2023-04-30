@@ -617,7 +617,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968379628}
   m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: -2, y: 11, z: 0}
+  m_LocalPosition: {x: -13, y: 11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1129,7 +1129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620642924}
   m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: -2, y: 11, z: 0}
+  m_LocalPosition: {x: -13, y: 11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1686,7 +1686,7 @@ PrefabInstance:
     - target: {fileID: 5980267831078312243, guid: 238285aca69817545a15c09c429fbbb4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 5980267831078312243, guid: 238285aca69817545a15c09c429fbbb4,
         type: 3}
@@ -1735,7 +1735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb30539c98dd4cbd8e832f0c6e5dca24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventory: {fileID: 0}
   _inventoryDisplay: {fileID: 1085192059231106436}
   _goslingInput: {fileID: 929523344}
 --- !u!114 &1085192059231106436 stripped
