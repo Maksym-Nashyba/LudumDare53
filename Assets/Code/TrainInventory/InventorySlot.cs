@@ -12,12 +12,12 @@ namespace Code.TrainInventory
             ClearSlot();
         }
 
-        public void FillSlot()
+        public void PaintFilled()
         {
             _image.color = Color.red;
         }
         
-        public void TempFillSlot()
+        public void PaitTemp()
         {
             _image.color = Color.magenta;
         }

@@ -7,7 +7,7 @@ namespace Code.TrainInventory
 {
     public class InventoryDragAndDrop : MonoBehaviour
     {
-        [SerializeField] private Inventory _inventory;
+        private Inventory _inventory;
         [SerializeField] private InventoryDisplay _inventoryDisplay;
         [SerializeField] private GoslingInput _goslingInput;
         private DragOperation _dragOperation;
@@ -53,7 +53,7 @@ namespace Code.TrainInventory
         
         private void OnDestroy()
         {
-            EndDrag();
+            //EndDrag();
         }
 
         private void StartDrag(InventoryEntry entry, Vector2Int entrySlot)

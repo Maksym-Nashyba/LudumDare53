@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276841, g: 0.2158925, b: 0.29782617, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276838, g: 0.21589248, b: 0.29782617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 433574834}
   - component: {fileID: 433574833}
   - component: {fileID: 433574832}
+  - component: {fileID: 433574835}
   m_Layer: 0
   m_Name: DataBus
   m_TagString: Untagged
@@ -211,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Vagons:
   - {fileID: 433574832}
+  - {fileID: 433574835}
   Credits: 1000
   CurrentStation: {fileID: 11400000, guid: 1a3289f40bdbf534fb9ceb876657219c, type: 2}
   _turret: {fileID: 11400000, guid: 4f272aa4ee3c76645b1e8dc1d963e20c, type: 2}
@@ -229,6 +231,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &433574835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433574831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7382b098fd8440eadc8e1a02e360988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &656831955
 GameObject:
   m_ObjectHideFlags: 0
