@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using Code.PlayerMechanics;
 using UnityEngine;
 
-namespace Code.PlayerMechanics
+namespace Code.Effects
 {
     [RequireComponent(typeof(LineRenderer))]
     public class ShotEffect : Effect
@@ -22,6 +23,8 @@ namespace Code.PlayerMechanics
             float passed = 0f;
             while (passed < duration)
             {
+                _line.SetPosition(0, _line.GetPosition(0) + new Vector3(-Time.deltaTime * 2.5f, 0f, 0f));
+                _line.SetPosition(1, _line.GetPosition(1) + new Vector3(-Time.deltaTime * 2.5f, 0f, 0f));
                 _line.startWidth = _line.endWidth = _widthOverLifetime.Evaluate(passed / duration);
                 yield return null;
                 passed += Time.deltaTime;

@@ -1,5 +1,4 @@
-﻿using System;
-using Code.PlayerMechanics.Tools;
+﻿using Code.PlayerMechanics.Tools;
 using Code.Train;
 using UnityEngine;
 
