@@ -20,12 +20,10 @@ namespace Code.TrainInventory.Items
                 Enemy = FindEnemy();
                 return;
             }
-            
-            if (!_inCD)
-            {
-                Fire();
-                StartCoroutine(PlayCD(_cdDuration));
-            }
+
+            if (_inCD) return;
+            Fire();
+            StartCoroutine(PlayCD(_cdDuration));
         }
 
         private IEnumerator PlayCD(float duration)

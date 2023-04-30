@@ -92,6 +92,7 @@ namespace Code.TrainInventory
                 _inventory.AddEntry(_dragOperation.InventoryEntry, _dragOperation.OriginalSlot);
             }
             _dragOperation = null;
+            _buyEntryAction = null;
         }
     }
 }
