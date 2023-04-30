@@ -31,7 +31,7 @@ namespace Code.PlayerMechanics.Tools
             leveledMuzzlePosition.y = Constants.PlayFieldHeight;
             if (HitsDamagable(leveledMuzzlePosition, direction, out IDamagable damagable, out Vector3 point))
             {
-                damagable.Damage(_damage);
+                damagable.DealDamage(_damage);
                 _effects.PlayShotEffect(_muzzle.position, point);
             }
             else

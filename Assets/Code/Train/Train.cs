@@ -17,7 +17,7 @@ namespace Code.Train
             DataBus = FindObjectOfType<DataBus>();
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             SpawnTrain();
         }
