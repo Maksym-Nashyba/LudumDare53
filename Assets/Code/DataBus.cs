@@ -20,11 +20,9 @@ namespace Code
         {
             DontDestroyOnLoad(gameObject);
             
-            Vagons.First().AddItem(_turret, new Vector2Int(1,1));
+            Vagons.First().AddEntry(_turret, new Vector2Int(1,1));
             
-            Vagons.First().AddItem(_turret, new Vector2Int(5,1));
-            
-            Vagons.First().AddItem(_turret, new Vector2Int(1,4));
+            Vagons.First().AddEntry(_turret, new Vector2Int(5,1));
         }
     }
 }

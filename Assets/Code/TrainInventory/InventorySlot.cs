@@ -16,10 +16,20 @@ namespace Code.TrainInventory
         {
             _image.color = Color.red;
         }
+        
+        public void TempFillSlot()
+        {
+            _image.color = Color.magenta;
+        }
 
         public void ClearSlot()
         {
             _image.color = Color.green;
+        }
+
+        public bool IsInSlot(Vector3 position)
+        {
+            return (transform.position - position).magnitude <= 0.5f;
         }
     }
 }
