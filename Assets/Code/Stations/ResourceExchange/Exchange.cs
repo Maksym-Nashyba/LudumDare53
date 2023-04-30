@@ -38,7 +38,7 @@ namespace Code.Stations.ResourceExchange
 
         public InventoryEntry[] GetInventoryResources()
         {
-            return _inventory.Items.ToArray();
+            return _inventory.Entries.ToArray();
         }
     }
 }
