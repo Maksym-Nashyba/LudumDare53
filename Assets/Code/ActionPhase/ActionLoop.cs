@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace Code
 {
-    public class ActionPhase : MonoBehaviour
+    public class ActionLoop : MonoBehaviour
     {
         [SerializeField] private float _duration;
         private float _passed;

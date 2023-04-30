@@ -11,7 +11,7 @@ namespace Code.TrainInventory.Items
 
         private void OnDestroy()
         {
-            FindObjectOfType<ActionTrain>().Remove(this);
+            FindObjectOfType<ActionTrain>()?.Remove(this);
         }
     }
 }
