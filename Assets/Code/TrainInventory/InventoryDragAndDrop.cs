@@ -12,6 +12,7 @@ namespace Code.TrainInventory
         [SerializeField] private GoslingInput _goslingInput;
         private DragOperation _dragOperation;
         private Vector2Int _selectedSlot;
+        private Action _buyEntryAction;
 
         private void Awake()
         {
@@ -51,9 +52,11 @@ namespace Code.TrainInventory
             }
         }
         
-        private void OnDestroy()
+        public void StartDrag(InventoryEntry entry, Action action)
         {
-            //EndDrag();
+            if(_dragOperation != null) return;
+            _dragOperation = new DragOperation(entry, entry.Prefab, new Vector2Int(0,0));
+            _buyEntryAction = action;
         }
 
         private void StartDrag(InventoryEntry entry, Vector2Int entrySlot)
@@ -76,6 +79,8 @@ namespace Code.TrainInventory
                     break;
                 }
             }
+
+            _buyEntryAction?.Invoke();
 
             try
             {

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: StasisPod
   StandartCost: 350
+  RealworldObject: {fileID: 0}
   _size: {x: 2, y: 2}
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 7289050334168709669, guid: 1c763f2fa49fcd446acd3a8cb36c1fac, type: 3}

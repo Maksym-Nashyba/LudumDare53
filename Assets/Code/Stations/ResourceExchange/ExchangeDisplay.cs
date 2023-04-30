@@ -19,6 +19,7 @@ namespace Code.Stations.ResourceExchange
 
         private void Awake()
         {
+            _buttons = new List<ExchangeProductButton>();
             _resourcesButton.onClick.AddListener(() =>
             {
                 UpdateResourcesTab(_exchange.CheapResources, _exchange.ExpensiveResources);
@@ -110,6 +111,7 @@ namespace Code.Stations.ResourceExchange
                 button.Button.onClick.AddListener(() =>
                 {
                     _exchange.SellEntry(entry);
+                    Destroy(button.gameObject);
                 }); 
                 _buttons.Add(button);
             }
@@ -117,6 +119,7 @@ namespace Code.Stations.ResourceExchange
 
         private void RemoveButtonsListeners()
         {
+            if(_buttons == null) return;
             foreach (ExchangeProductButton button in _buttons)
             {
                 button.Button.onClick.RemoveAllListeners();

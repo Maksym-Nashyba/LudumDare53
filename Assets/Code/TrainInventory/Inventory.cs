@@ -55,17 +55,6 @@ namespace Code.TrainInventory
             return itemInSlot;
         }
 
-        public void MoveEntry(InventoryEntry item, Vector2Int topLeftItemSlot)
-        {
-            if (!IsWithinInventoryBounds(topLeftItemSlot, item.Size)) throw new IndexOutOfRangeException();
-            if (!AreSlotsAvailable(topLeftItemSlot, item.Size)) throw new InvalidOperationException();
-            item.UpdatePosition(topLeftItemSlot);
-            UpdateSlots(item.TopLeftSlotPosition, item.Size, false);
-            UpdateSlots(topLeftItemSlot, item.Size, true);
-            InventoryChanged?.Invoke();
-            Changed?.Invoke(this);
-        }
-
         public void RemoveEntry(InventoryEntry item)
         {
             _items.Remove(item);

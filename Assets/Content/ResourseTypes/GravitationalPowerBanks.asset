@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: GravitationalPowerBanks
   StandartCost: 750
+  RealworldObject: {fileID: 0}
   _size: {x: 4, y: 2}
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 2854803614458256753, guid: 8c049646fc1b55b4290f0f8bffdb9042, type: 3}
