@@ -965,10 +965,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3098656082806502874, guid: 48733cb86c761d2479e91471a09da615, type: 3}
+    - {fileID: 4524127535242879792, guid: 48733cb86c761d2479e91471a09da615, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4720667471368309714, guid: 48733cb86c761d2479e91471a09da615,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1502250664}
   m_SourcePrefab: {fileID: 100100000, guid: 48733cb86c761d2479e91471a09da615, type: 3}
+--- !u!1 &1502250663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4720667471368309714, guid: 48733cb86c761d2479e91471a09da615,
+    type: 3}
+  m_PrefabInstance: {fileID: 1502250662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1502250664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502250663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f647022babb4a79af4d320211dbaaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _headVagonPrefab: {fileID: 3854516230079781194, guid: 9a81144a309eb274eafac0dab51f14c9,
+    type: 3}
+  _vagonPrefab: {fileID: 3854516230079781194, guid: 9a81144a309eb274eafac0dab51f14c9,
+    type: 3}
+  _bridgePrefab: {fileID: 1512149729941651142, guid: b72798edadce91e4fade9629de504128,
+    type: 3}
 --- !u!1 &1565542359
 GameObject:
   m_ObjectHideFlags: 3

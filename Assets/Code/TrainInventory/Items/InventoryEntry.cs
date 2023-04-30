@@ -8,6 +8,7 @@ namespace Code.TrainInventory.Items
         public Vector2Int Size => _size;
         public GameObject Prefab => _prefab;
         public Vector2Int TopLeftSlotPosition { get; private set; }
+        public GameObject RealworldObject;
         [SerializeField] private Vector2Int _size;
         [SerializeField] private GameObject _prefab;
 

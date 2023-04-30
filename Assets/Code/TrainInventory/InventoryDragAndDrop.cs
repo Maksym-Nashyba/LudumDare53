@@ -53,7 +53,7 @@ namespace Code.TrainInventory
         
         private void OnDestroy()
         {
-            EndDrag();
+            //EndDrag();
         }
 
         private void StartDrag(InventoryEntry entry, Vector2Int entrySlot)
