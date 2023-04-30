@@ -12,14 +12,14 @@ namespace Code.TrainInventory
         public event Action InventoryChanged;
         public bool[,] IsSlotsFill { get; private set; }
         private List<InventoryEntry> _items;
-        
+
         private void Awake()
         {
             IsSlotsFill = new bool[InventoryRows, InventoryColumns];
             _items = new List<InventoryEntry>();
         }
 
-        public void AddItem(InventoryEntry item, Vector2Int positionOnVagon)//TOP LEFT POSITION
+        public void AddEntry(InventoryEntry item, Vector2Int positionOnVagon) //TOP LEFT POSITION
         {
             item = Instantiate(item);
             if (!IsWithinInventoryBounds(positionOnVagon, item.Size)) throw new IndexOutOfRangeException();
@@ -29,8 +29,8 @@ namespace Code.TrainInventory
             _items.Add(item);
             InventoryChanged?.Invoke();
         }
-        
-        public InventoryEntry GetItemInSlot(Vector2Int slot)
+
+        public InventoryEntry GetEntryInSlot(Vector2Int slot)
         {
             InventoryEntry itemInSlot = null;
 
@@ -40,18 +40,18 @@ namespace Code.TrainInventory
                 {
                     for (int x = 0; x < item.Size.x; x++)
                     {
-                        if(!(item.TopLeftSlotPosition.y + y == slot.y &&
-                             item.TopLeftSlotPosition.x + x == slot.x)) continue;
+                        if (!(item.TopLeftSlotPosition.y + y == slot.y &&
+                              item.TopLeftSlotPosition.x + x == slot.x)) continue;
                         itemInSlot = item;
                         break;
                     }
                 }
             }
-            
+
             return itemInSlot;
         }
 
-        public void MoveItem(InventoryItem item, Vector2Int topLeftItemSlot)
+        public void MoveEntry(InventoryEntry item, Vector2Int topLeftItemSlot)
         {
             if (!IsWithinInventoryBounds(topLeftItemSlot, item.Size)) throw new IndexOutOfRangeException();
             if (!AreSlotsAvailable(topLeftItemSlot, item.Size)) throw new InvalidOperationException();
@@ -61,11 +61,10 @@ namespace Code.TrainInventory
             InventoryChanged?.Invoke();
         }
 
-        public void RemoveItem(InventoryItem item)
+        public void RemoveEntry(InventoryEntry item)
         {
             _items.Remove(item);
             UpdateSlots(item.TopLeftSlotPosition, item.Size, false);
-            Destroy(item);
             InventoryChanged?.Invoke();
         }
 
