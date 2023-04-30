@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Code.TrainInventory.Items;
+using UnityEngine;
 
 namespace Code.Stations
 {
@@ -6,7 +7,7 @@ namespace Code.Stations
     public class Station : ScriptableObject
     {
         public Station[] Links;
-        public ResourceType[] CheapResources;
-        public ResourceType[] ExpensiveResources;
+        public InventoryEntry[] CheapResources;
+        public InventoryEntry[] ExpensiveResources;
     }
 }

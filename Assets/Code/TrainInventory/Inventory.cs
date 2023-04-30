@@ -11,12 +11,12 @@ namespace Code.TrainInventory
         public const int InventoryColumns = 9;
         public event Action InventoryChanged;
         public bool[,] IsSlotsFill { get; private set; }
-        private List<InventoryEntry> _items;
+        public List<InventoryEntry> Items { get; private set; }
 
         private void Awake()
         {
             IsSlotsFill = new bool[InventoryRows, InventoryColumns];
-            _items = new List<InventoryEntry>();
+            Items = new List<InventoryEntry>();
         }
 
         public void AddEntry(InventoryEntry item, Vector2Int positionOnVagon) //TOP LEFT POSITION
@@ -26,7 +26,7 @@ namespace Code.TrainInventory
             if (!AreSlotsAvailable(positionOnVagon, item.Size)) throw new InvalidOperationException();
             item.UpdatePosition(positionOnVagon);
             UpdateSlots(positionOnVagon, item.Size, true);
-            _items.Add(item);
+            Items.Add(item);
             InventoryChanged?.Invoke();
         }
 
@@ -34,7 +34,7 @@ namespace Code.TrainInventory
         {
             InventoryEntry itemInSlot = null;
 
-            foreach (InventoryEntry item in _items)
+            foreach (InventoryEntry item in Items)
             {
                 for (int y = 0; y < item.Size.y; y++)
                 {
@@ -63,7 +63,7 @@ namespace Code.TrainInventory
 
         public void RemoveEntry(InventoryEntry item)
         {
-            _items.Remove(item);
+            Items.Remove(item);
             UpdateSlots(item.TopLeftSlotPosition, item.Size, false);
             InventoryChanged?.Invoke();
         }
