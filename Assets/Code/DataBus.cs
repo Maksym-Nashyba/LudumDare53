@@ -4,6 +4,7 @@ using Code.Stations;
 using Code.TrainInventory;
 using Code.TrainInventory.Items;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Code
 {
@@ -12,8 +13,17 @@ namespace Code
         public List<Inventory> Vagons;
         public int Credits;
         public Station CurrentStation;
+        public bool Shotgun;
+        public bool Sniper;
+        public bool Welder;
 
         [SerializeField] private InventoryEntry _turret;
+
+        public void AddVagon()
+        {
+            Vagons.Add(gameObject.AddComponent<Inventory>());
+            SceneManager.LoadScene("Station");
+        }
         
         private void Awake()
         {

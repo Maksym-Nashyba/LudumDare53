@@ -16,7 +16,7 @@ namespace Code
 
         private void Start()
         {
-            SceneManager.LoadScene("Action");
+            SceneManager.LoadScene("Station");
         }
 
         public void StartTrackTowards(Station station)

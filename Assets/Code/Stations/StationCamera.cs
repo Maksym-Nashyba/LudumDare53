@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -6,6 +7,7 @@ namespace Code.Stations
 {
     public class StationCamera : MonoBehaviour
     {
+        public event Action<int> VagonChanged;
         [SerializeField] private CinemachineVirtualCamera _firstCamera;
         private List<CinemachineVirtualCamera> _cameras;
         private DataBus _dataBus;
@@ -31,18 +33,21 @@ namespace Code.Stations
         {
             _firstCamera.MoveToTopOfPrioritySubqueue();
             _currentCamIndex = 0;
+            VagonChanged?.Invoke(_currentCamIndex);
         }
 
         public void MoveLeft()
         {
             if(_currentCamIndex+1 > _cameras.Count-1)return;
             _cameras[++_currentCamIndex].MoveToTopOfPrioritySubqueue();
+            VagonChanged?.Invoke(_currentCamIndex);
         }
 
         public void MoveRight()
         {
             if(_currentCamIndex-1 < 0)return;
             _cameras[--_currentCamIndex].MoveToTopOfPrioritySubqueue();
+            VagonChanged?.Invoke(_currentCamIndex);
         }
     }
 }

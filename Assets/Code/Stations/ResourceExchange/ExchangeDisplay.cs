@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Code.TrainInventory.Items;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,10 +17,12 @@ namespace Code.Stations.ResourceExchange
         [SerializeField] private Button _upgradesButton;
         [SerializeField] private Button _inventoryButton;
         [SerializeField] private VerticalLayoutGroup _verticalLayoutGroup;
+        [SerializeField] private TextMeshProUGUI _balanceAmount;
         private List<ExchangeProductButton> _buttons;
 
         private void Awake()
         {
+            _exchange.BalanceChanged += OnBalanceChanged;
             _buttons = new List<ExchangeProductButton>();
             _resourcesButton.onClick.AddListener(() =>
             {
@@ -35,96 +39,102 @@ namespace Code.Stations.ResourceExchange
             });
         }
 
+        private void Start()
+        {
+            UpdateResourcesTab(_exchange.CheapResources, _exchange.ExpensiveResources);
+        }
+
         private void OnDestroy()
         {
-            RemoveButtonsListeners();
+            _exchange.BalanceChanged -= OnBalanceChanged;
+            ClearButtons();
             _resourcesButton.onClick.RemoveAllListeners();
             _turretsButton.onClick.RemoveAllListeners();
             _upgradesButton.onClick.RemoveAllListeners();
             _inventoryButton.onClick.RemoveAllListeners();
         }
 
+        private void OnBalanceChanged(int balance)
+        {
+            _balanceAmount.text = balance.ToString();
+        }
+
         private void UpdateResourcesTab(InventoryEntry[] cheapResources, InventoryEntry[] expensiveResources)
         {
-            RemoveButtonsListeners();
-            foreach (InventoryEntry resource in cheapResources)
+            ClearButtons();
+            foreach (InventoryEntry entry in cheapResources)
             {
-                    ExchangeProductButton button = 
-                        Instantiate(_productButtonPrefab, _verticalLayoutGroup.transform).GetComponent<ExchangeProductButton>();
-                    button.ProductName.text = resource.Name;
-                    button.Price.text = (resource.StandartCost * 0.6f).ToString();
-                    button.ButtonText.text = "Buy";
-                    button.Button.onClick.AddListener(() =>
-                    {
-                        _exchange.BuyEntry(resource);
-                    });
-                    _buttons.Add(button);
+                SpawnProductButton(entry.Name, entry.StandartCost * 0.6f, "Buy", button => _exchange.BuyEntry(entry));
             }
-            foreach (InventoryEntry resource in expensiveResources)
+            foreach (InventoryEntry entry in expensiveResources)
             {
-                ExchangeProductButton button = 
-                    Instantiate(_productButtonPrefab, _verticalLayoutGroup.transform).GetComponent<ExchangeProductButton>();
-                button.ProductName.text = resource.Name;
-                button.Price.text = (resource.StandartCost * 1.4f).ToString();
-                button.ButtonText.text = "Buy";
-                button.Button.onClick.AddListener(() =>
-                {
-                    _exchange.BuyEntry(resource);
-                });
-                _buttons.Add(button);
+                SpawnProductButton(entry.Name, entry.StandartCost * 1.4f, "Buy", button => _exchange.BuyEntry(entry));
             }
         }
         
-        private void UpdateTurretsTab(InventoryEntry[] turrets)
+        private void UpdateTurretsTab(InventoryEntry[] entries)
         {
-            RemoveButtonsListeners();
-            foreach (InventoryEntry entry in turrets)
+            ClearButtons();
+            foreach (InventoryEntry entry in entries)
             {
-                ExchangeProductButton button = 
-                    Instantiate(_productButtonPrefab, _verticalLayoutGroup.transform).GetComponent<ExchangeProductButton>();
-                button.ProductName.text = entry.Name;
-                button.Price.text = entry.StandartCost.ToString();
-                button.ButtonText.text = "Buy";
-                button.Button.onClick.AddListener(() =>
-                {
-                    _exchange.BuyEntry(entry);
-                });
-                _buttons.Add(button);
+                SpawnProductButton(entry.Name, entry.StandartCost, "Buy", button => _exchange.BuyEntry(entry));
             }
         }
 
         private void UpdateUpgradesTab()
         {
-            
+            ClearButtons();
+            foreach ((string name, int price) upgrade in _exchange.GetAvailableUpgrades())
+            {
+                SpawnProductButton(upgrade.name, upgrade.price, "Buy", button =>
+                {
+                    if(!_exchange.BuyUpgrade(upgrade.name)) return;
+                    button.Button.onClick.RemoveAllListeners();
+                    _buttons.Remove(button);
+                    Destroy(button.gameObject);
+                });
+            }
         }
         
         private void UpdateInventoryTab(InventoryEntry[] entries)
         {
-            RemoveButtonsListeners();
+            ClearButtons();
             foreach (InventoryEntry entry in entries)
             {
-                ExchangeProductButton button = 
-                    Instantiate(_productButtonPrefab, _verticalLayoutGroup.transform).GetComponent<ExchangeProductButton>();
-                button.ProductName.text = entry.Name;
-                button.Price.text = (entry.StandartCost * _exchange.GetPriceMultiplier(entry)).ToString();
-                button.ButtonText.text = "Sell";
-                button.Button.onClick.AddListener(() =>
-                {
-                    _exchange.SellEntry(entry);
-                    Destroy(button.gameObject);
-                }); 
-                _buttons.Add(button);
+                SpawnProductButton(entry.Name, entry.StandartCost * _exchange.GetPriceMultiplier(entry),
+                    "Sell", button =>
+                    {
+                        _exchange.SellEntry(entry);
+                        button.Button.onClick.RemoveAllListeners();
+                        _buttons.Remove(button);
+                        Destroy(button.gameObject);
+                    });
             }
         }
 
-        private void RemoveButtonsListeners()
+        private void ClearButtons()
         {
-            if(_buttons == null) return;
+            if(_buttons == null || _buttons.Count == 0) return;
             foreach (ExchangeProductButton button in _buttons)
             {
                 button.Button.onClick.RemoveAllListeners();
+                Destroy(button.gameObject);
             }
             _buttons.Clear();
+        }
+
+        private void SpawnProductButton(string productName, float price, string buttonText, Action<ExchangeProductButton> onClickAction)
+        {
+            ExchangeProductButton button = 
+                Instantiate(_productButtonPrefab, _verticalLayoutGroup.transform).GetComponent<ExchangeProductButton>();
+            button.ProductName.text = productName;
+            button.Price.text = price.ToString();
+            button.ButtonText.text = buttonText;
+            button.Button.onClick.AddListener(() =>
+            {
+                onClickAction?.Invoke(button);
+            });
+            _buttons.Add(button);
         }
     }
 }
