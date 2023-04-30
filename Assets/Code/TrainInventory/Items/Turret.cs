@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
+using Code.ActionPhase;
 using Code.Enemies;
 using UnityEngine;
 
@@ -7,10 +9,18 @@ namespace Code.TrainInventory.Items
 {
     public abstract class Turret : TrainObject
     {
+        [SerializeField] private Healthbar _healthbar;
         [SerializeField] private float _cdDuration;
+        [SerializeField] private int _maxHp;
         private bool _inCD;
-        protected Enemy Enemy; 
-        
+        private int _hp;
+        protected Enemy Enemy;
+
+        protected virtual void Awake()
+        {
+            _hp = _maxHp;
+        }
+
         protected abstract void Fire();
 
         protected virtual void Update()
@@ -28,6 +38,15 @@ namespace Code.TrainInventory.Items
             }
         }
 
+        public override void DealDamage(int damage)
+        {
+            _hp = Mathf.Clamp(_hp - damage, 0, Int32.MaxValue);
+            _healthbar.UpdateBar(Mathf.Clamp01(_hp/(float)_maxHp));
+            if (_hp < 1) Die();
+        }
+
+        protected abstract void Die();
+        
         private IEnumerator PlayCD(float duration)
         {
             float passed = 0f;

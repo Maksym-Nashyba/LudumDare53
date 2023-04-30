@@ -12,6 +12,11 @@ namespace Code.PlayerMechanics.Tools
         [SerializeField] private int _damage;
         private bool _inCooldown;
         
+        private void OnEnable()
+        {
+            _inCooldown = false;
+        }
+        
         public override void Use(Vector3 direction)
         {
             if(_inCooldown)return;
@@ -29,7 +34,7 @@ namespace Code.PlayerMechanics.Tools
             direction.Normalize();
             Vector3 leveledMuzzlePosition = _muzzle.position;
             leveledMuzzlePosition.y = Constants.PlayFieldHeight;
-            if (HitsDamagable(leveledMuzzlePosition, direction, out IDamagable damagable, out Vector3 point))
+            if (HitsDamagable(leveledMuzzlePosition, direction,5f, out IDamagable damagable, out Vector3 point))
             {
                 damagable.DealDamage(_damage);
                 _effects.PlayShotEffect(_muzzle.position, point);
