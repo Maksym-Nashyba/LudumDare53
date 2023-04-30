@@ -133,8 +133,8 @@ MonoBehaviour:
   _maxHp: 100
   _rigidbody: {fileID: 7326459018889311517}
   _damage: 10
-  _cdDurationSeconds: 1
-  _speed: 2
+  _cdDurationSeconds: 2.5
+  _speed: 1.7
 --- !u!54 &7326459018889311517
 Rigidbody:
   m_ObjectHideFlags: 0

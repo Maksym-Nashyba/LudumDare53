@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Code.Train;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -29,7 +28,7 @@ namespace Code.ActionPhase
             Vector3 center = _train.Turrets[Random.Range(0, _train.Turrets.Count)].transform.position;
             float offset = Random.Range(0f,2f) >1f ? 10f : -10f;
             center += new Vector3(0f, 0f, offset);
-            Instantiate(_enemyPrefabs[0], center, Quaternion.identity);
+            GameObject istance = Instantiate(_enemyPrefabs[0], center, Quaternion.identity);
             StartCoroutine(SpawnEnemy(Random.Range(3f, 7f)));
         } 
     }
