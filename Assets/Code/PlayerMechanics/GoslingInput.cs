@@ -15,7 +15,7 @@ namespace Code.PlayerMechanics
 
         public bool TryGetMoveInput(out Vector2 input)
         {
-            input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             return input.magnitude > 0.1f;
         }
         

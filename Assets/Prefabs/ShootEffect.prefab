@@ -77,14 +77,14 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.23621556
     - serializedVersion: 3
-      time: 0.9958191
+      time: 0.38732287
       value: 0
-      inSlope: -0.008708731
-      outSlope: -0.008708731
+      inSlope: -0
+      outSlope: -0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.347613
-      outWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.50700474
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -161,7 +161,7 @@ LineRenderer:
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 51657
+      ctime0: 60909
       ctime1: 65535
       ctime2: 0
       ctime3: 0
@@ -170,7 +170,7 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 62258
+      atime1: 64379
       atime2: 65535
       atime3: 0
       atime4: 0

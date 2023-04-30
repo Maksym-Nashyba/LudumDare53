@@ -19,7 +19,7 @@ namespace Code.PlayerMechanics
             if(!_input.TryGetMoveInput(out Vector2 input))return;
 
             Vector3 direction = new Vector3(input.x, 0f, input.y);
-            Vector3 force = direction * (_speedUnitsPerSecond * Time.deltaTime);
+            Vector3 force = direction.normalized * (_speedUnitsPerSecond * Time.deltaTime);
             _rigidbody.MovePosition(_rigidbody.position + force);
         }
         

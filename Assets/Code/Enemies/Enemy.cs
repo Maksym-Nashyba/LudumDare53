@@ -1,13 +1,25 @@
-﻿using Code.PlayerMechanics.Tools;
+﻿using System;
+using Code.PlayerMechanics.Tools;
 using UnityEngine;
 
 namespace Code.Enemies
 {
-    public class Enemy : MonoBehaviour, IDamagable
+    public abstract class Enemy : MonoBehaviour, IDamagable
     {
-        public void Damage(int damage)
+        [SerializeField] private int _maxHp;
+        private int _hp;
+
+        protected virtual void Awake()
         {
-            //throw new System.NotImplementedException();
+            _hp = _maxHp;
         }
+
+        public void DealDamage(int damage)
+        {
+            _hp = Mathf.Clamp(_hp - damage, 0, Int32.MaxValue);
+            if (_hp < 1) Die();
+        }
+
+        protected abstract void Die();
     }
 }

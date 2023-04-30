@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-
-namespace Code.TrainInventory.Items
+﻿namespace Code.TrainInventory.Items
 {
-    public abstract class Turret : MonoBehaviour
+    public abstract class Turret : TrainObject
     {
         
     }

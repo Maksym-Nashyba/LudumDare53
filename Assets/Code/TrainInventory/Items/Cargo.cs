@@ -2,7 +2,7 @@
 
 namespace Code.TrainInventory.Items
 {
-    public abstract class Cargo : MonoBehaviour
+    public abstract class Cargo : TrainObject
     {
         
     }
