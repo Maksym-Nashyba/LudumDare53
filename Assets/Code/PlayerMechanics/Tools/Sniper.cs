@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Code.PlayerMechanics.Tools
 {
-    public class Pistol : HandheldTool
+    public class Sniper : HandheldTool
     {
         [SerializeField] private EffectsManager _effects;
         [SerializeField] private Transform _muzzle;
@@ -28,7 +27,7 @@ namespace Code.PlayerMechanics.Tools
         {
             Vector3 leveledMuzzlePosition = _muzzle.position;
             leveledMuzzlePosition.y = Constants.PlayFieldHeight;
-            if (HitsDamagable(leveledMuzzlePosition, direction,7.5f, out IDamagable damagable, out Vector3 point))
+            if (HitsDamagable(leveledMuzzlePosition, direction,40f, out IDamagable damagable, out Vector3 point))
             {
                 damagable.DealDamage(_damage);
                 _effects.PlayShotEffect(_muzzle.position, point);

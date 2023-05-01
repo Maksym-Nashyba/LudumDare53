@@ -1,6 +1,7 @@
 using System;
 using Code.PlayerMechanics.Tools;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Code.PlayerMechanics
 {
@@ -8,6 +9,7 @@ namespace Code.PlayerMechanics
     {
         public event Action<HandheldTool> ActiveToolChanged;
         [SerializeField] private HandheldTool[] _tools;
+        [SerializeField] private Image[] _icons;
         [SerializeField] private GoslingInput _input;
         private HandheldTool _currentTool;
 
@@ -18,8 +20,10 @@ namespace Code.PlayerMechanics
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Alpha0)) EquipTool(_tools[1]);
-            if(Input.GetKeyDown(KeyCode.Alpha1)) EquipTool(_tools[2]);
+            if(Input.GetKeyDown(KeyCode.Alpha1)) EquipTool(_tools[0]);
+            if(Input.GetKeyDown(KeyCode.Alpha2)) EquipTool(_tools[1]);
+            if(Input.GetKeyDown(KeyCode.Alpha3)) EquipTool(_tools[2]);
+            if(Input.GetKeyDown(KeyCode.Alpha4)) EquipTool(_tools[3]);
             
             if (Input.GetMouseButtonDown(0))
             {
@@ -34,6 +38,12 @@ namespace Code.PlayerMechanics
             _currentTool = nextTool;
             _currentTool.gameObject.SetActive(true);
             ActiveToolChanged?.Invoke(_currentTool);
+            foreach (Image image in _icons)
+            {
+                image.color = new Color(1f, 1f, 1f, 0.5f);
+            }
+
+            _icons[Array.IndexOf(_tools, nextTool)].color = Color.white;
         }
     }
 }
